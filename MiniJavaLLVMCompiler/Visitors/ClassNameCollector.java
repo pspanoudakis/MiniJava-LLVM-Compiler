@@ -45,7 +45,7 @@ public class ClassNameCollector extends GJDepthFirst<String, Void> {
         // Store class if not already present
         if (this.classInfos.get(classname) != null)
         {
-            throw new SemanticError("Class " + classname + " is declared more than once");
+            throw new SemanticError("Class '" + classname + "' is declared more than once");
         }
 
         ClassInfo classInfo = new ClassInfo(classname);
@@ -71,13 +71,13 @@ public class ClassNameCollector extends GJDepthFirst<String, Void> {
         // Store class if not already present
         if (this.classInfos.get(className) != null)
         {
-            throw new SemanticError("Class " + className + " is declared more than once");
+            throw new SemanticError("Class '" + className + "' is declared more than once");
         }
         ClassInfo superClass = this.classInfos.get(superClassName);
         // Checking if superclass has already been declared
         if (superClass == null)
         {
-            throw new SemanticError("Class " + superClassName + " is being extended without having been declared");
+            throw new SemanticError("Class '" + superClassName + "' is being extended without having been declared");
         }
 
         ClassInfo classInfo = new ClassInfo(className, superClass);

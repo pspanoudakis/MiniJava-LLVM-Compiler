@@ -8,6 +8,8 @@ example.*
 *.jj
 *.iml
 *.class
+output/*
+llvm-examples/*
 LLVMGenerator/*
 SemanticAnalyzer/*
 MiniJavaLLVMCompiler/*

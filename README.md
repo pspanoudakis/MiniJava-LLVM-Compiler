@@ -79,6 +79,7 @@ in the Stack and then search the rest until an entry associated with that name i
 ### FunctionBodyAnalyzer
 - Each `visit` method in this visitor returns a `String`, which indicates the type of the evaluated expression,
 or `null`, if the statement does not need to be evaluated (loops, declarations etc.).
+
 The Visitor stores:
 - A `Map` (`classInfos`), used by the previous Visitors
 to store Classes along with their fields and methods,

@@ -26,6 +26,16 @@ To compile one or multiple files, run `java Main <file> <rest files>*`.
 
 To clean up all generated files when done, run `make clean`.
 
+### Features
+- The program checks the input MiniJava file for semantic errors.\
+If any error is found, it will be reported and the compilation of the current file will stop,
+so no more errors will be reported.
+- If no semantic errors are detected, the program generates the equivalent LLVM-IR `.ll` file.\
+No variable initialization checks are made, and all created variables/arrays are 0-byte initialized
+at runtime.
+The compiler tries to mirror the JVM behaviour regarding Array out of bounds access errors.
+It checks every index access at runtime and if such an error is detected, it is reported and the execution stops.
+
 ### Parse Tree Visitors
 This program takes advantage of Visitor Pattern. 4 Visitors are used in the below order:
 - **ClassNameCollector**:
@@ -99,3 +109,4 @@ This allows to quickly determine the class type of the object stored in `%this`.
 Developed and tested in WSL Ubuntu 20.04, using Visual Studio Code.
 - `javacc5.jar` and `jtb132di.jar` files were used for JavaCC and JTB respectively.
 - Java SE-14 was used in development & testing.
+- Clang 10.0.0 was used for compiling and executing `.ll` files produced by the Generator.

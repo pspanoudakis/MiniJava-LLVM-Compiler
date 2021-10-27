@@ -51,27 +51,18 @@ public class Main {
                 FunctionBodyAnalyzer functionAnalyzer = new FunctionBodyAnalyzer(classNameCollector.classInfos);
                 root.accept(functionAnalyzer, null);
 
-                // TODO: Not to be included
-                System.out.println("Semantic Analysis has been completed.");
-                functionAnalyzer.printOffsets();
-
                 /* ------------------- LLVM IR Generation ------------------ */
-
-                String[] temp = filepath.split("/");
-                String filename = temp[temp.length - 1];
-                IRGenerator irgen = new IRGenerator("./output/" + filename.replaceFirst("[.][^.]+$", "") + ".ll", classNameCollector.classInfos);
                 
-                /* // Create output .ll file
+                // Create output .ll file
                 String outputFile = filepath.replace(".java", ".ll");
-                IRGenerator irgen = new IRGenerator(outputFile, classNameCollector.classInfos); */
+                IRGenerator irgen = new IRGenerator(outputFile, classNameCollector.classInfos);
                 irgen.emitVtables();
                 irgen.emitUtils();
                 root.accept(irgen, null);
                 irgen.closeWriter();
 
                 // Done.
-                //System.out.println("LLVM IR file: '" + outputFile + "' has been produced.");
-                System.out.println("LLVM IR file has been produced.");
+                System.out.println("LLVM IR file: '" + outputFile + "' has been produced.");
             }
             catch(ParseException ex){
                 // Parsing failed
